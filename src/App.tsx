@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.scss";
+import ImageBox from "./components/ImageBox";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section>
+      <div className="imageUpload">
+        <div className="imageUpload__content">
+          There is no image.
+          <br />
+          Post your first photo.
+        </div>
+        <div className="imageUpload__post--button">+</div>
+        <ImageBox src="" />
+      </div>
+    </section>
   );
 }
 
