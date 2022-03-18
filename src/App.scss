@@ -24,6 +24,10 @@ section {
     color: skyblue;
   }
 
+  &__input {
+    display: none;
+  }
+
   &__post--button {
     width: 100px;
     height: 100px;
@@ -38,6 +42,8 @@ section {
   &__post--image {
     width: 200px;
     height: 200px;
+    min-width: 200px;
+    min-height: 200px;
   }
 }
 
