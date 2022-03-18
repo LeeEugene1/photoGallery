@@ -12,19 +12,25 @@ function App() {
   };
   const inpRefChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (e.currentTarget.value) {
-      let elem = e.currentTarget.value;
-      setImageList((prev) => [...prev, elem]);
+    if (e.currentTarget.files?.[0]) {
+      let file = e.currentTarget.files[0];
+      //   console.log(file);
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = (e) => {
+        setImageList((prev) => [...prev, e.target?.result as string]);
+      };
     }
   };
   return (
     <section>
-      <div className="imageUpload">
+      <div className={"imageUpload " + (imageList.length > 0 && "row")}>
         {imageList.length === 0 && (
           <div className="imageUpload__content">
             There is no image.
             <br />
-            Post your first photo.
+            Drag or click to post your photo.
           </div>
         )}
         <input
@@ -33,10 +39,12 @@ function App() {
           ref={inpRef}
           onChange={inpRefChange}
         />
+        {imageList.map((el, index) => (
+          <ImageBox src={el} key={el + index} />
+        ))}
         <div className="imageUpload__post--button" onClick={inpRefClick}>
           +
         </div>
-        <ImageBox src="" />
       </div>
     </section>
   );
